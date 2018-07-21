@@ -49,7 +49,7 @@ var indexViewModel = (function () {
 	self.sendEmailClickHandler = function () {
 		var subject = encodeURIComponent(document.getElementById("subject").value);
 		var message = encodeURIComponent(document.getElementById("message").value);
-		var address = encodeURIComponent("alex_arsic@hotmail.com");
+		var address = encodeURIComponent("mailto:TheMelbournePreschool@gmail.com");
 		window.open("mailto:" + address + "?subject=" + subject + "&body=" + message);
 	};
 	

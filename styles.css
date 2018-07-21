@@ -124,12 +124,7 @@ header, #logo{
 	opacity: 0.9;
 }
 #navbar a:hover, #navbar .navSelected {
-	/* color: white; */
-	/* background-color: #314c7b; */
-	 */
-	border-top-right-radius: 7.5px;
-	border-top-left-radius: 8.5px; */
-	border-top-right-radius: 7.5px;
+	border-top-left-radius: 8.5px;
 	border-top-right-radius: 8.5px;
 	border-color: black;
 	border-bottom-color: #d9d9d9;
@@ -218,7 +213,7 @@ header, #logo{
 #about p {
 	background-color: white;
 }
-#about-img {
+#about-img, #vpk-img {
 	float: right;
 	max-width: 490px;
 	margin-left: 15px;
