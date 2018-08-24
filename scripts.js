@@ -3,12 +3,16 @@ var indexViewModel = (function () {
 	
 	self.tab = "home";
 	self.ignoreHashChange = false;
+	self.encodedAttachment = "";
 	
 	self.init = function () {
 		var $document = $(document);
 		var $window = $(window);
 		$document.on("click", "#navbar a, .preview-box", self.navClickHandler);
 		$document.on("click", "#sendBtn", self.sendEmailClickHandler);
+		$document.on("change", "#resume", self.uploadFileToServer);
+		$document.on("fileselect", "#resume", self.fileSelected);
+		$document.on("click", "#submitApplication", self.submitApplication);
 		$window.on("hashchange", self.hashChangedHandler);
 		
 		$("#currentYear").text(new Date().getFullYear());
@@ -51,6 +55,57 @@ var indexViewModel = (function () {
 		var message = encodeURIComponent(document.getElementById("message").value);
 		var address = encodeURIComponent("mailto:TheMelbournePreschool@gmail.com");
 		window.open("mailto:" + address + "?subject=" + subject + "&body=" + message);
+	};
+	
+	self.uploadFileToServer = function () {
+		var label = $(this).val()
+			.replace(/\\/g, "/")
+			.replace(/.*\//, "");
+		$(this).trigger("fileselect", [label]);
+		
+		var file = event.srcElement.files[0];
+		var reader = new FileReader();
+		reader.readAsBinaryString(file);
+		reader.onload = function () {
+			self.encodedAttachment = "data:" + file.type + ";base64," + btoa(reader.result);
+		};
+		reader.onerror = function() {
+			console.error("There was an error encoding the attachment.");
+		};
+	};
+	
+	self.fileSelected = function (e, label) {
+		$(".custom-file-label").text(label);
+	};
+	
+	self.submitApplication = function () {
+		var body = self.buildApplicationBody();
+		if (!self.encodedAttachment) {
+			alert("Please attach your resume!");
+			$("#resume").focus();
+			return;
+		}
+		Email.sendWithAttachment(
+			"TheMelbournePreschool@gmail.com",
+			"TheMelbournePreschool@gmail.com",
+			"Job application from TheMelbournePreschool.com",
+			body,
+			{token: "89fb9dc3-e681-46c5-8166-31a2d734730e"},
+			null,
+			null,
+			self.encodedAttachment,
+			function done(message) { 
+				alert("Thank you for your application!");
+			}
+		);
+	};
+	
+	self.buildApplicationBody = function () {
+		var body = "";
+		$("#careers").find("input:not([type=file])").each(function () {
+			body += $(this).attr("placeholder") + ": " + $(this).val() + "\n";
+		});
+		return body;
 	};
 	
 	self.openTab = function () {
@@ -131,7 +186,8 @@ var indexViewModel = (function () {
 	
 	return {
 		initialize: self.init,
-		currentYear: self.currentYear
+		currentYear: self.currentYear,
+		buildBody: self.buildApplicationBody
 	};
 })();
 

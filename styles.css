@@ -201,13 +201,16 @@ header, #logo{
 #contact p {
 	white-space: normal;
 }
-#contact form {padding: 15px;margin-top: 80px;}
-#contact form input, #contact form textarea {
+#contact form {
+	padding: 15px;
+	margin-top: 80px;
+}
+form input, form textarea {
 	-webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-#contact textarea {
+textarea {
 	min-height: 100px;
 }
 #about p {
@@ -246,6 +249,8 @@ header, #logo{
 	margin-left: 0;
 }
 
+#careers .custom-file-label {box-sizing: border-box;}
+	
 footer .owner {
 	background: #222;
 	border: 5px solid #444;
