@@ -250,7 +250,7 @@ textarea {
 }
 
 #careers .custom-file-label {box-sizing: border-box;}
-	
+#careers .validation-error {color: #dc3545;}
 footer .owner {
 	background: #222;
 	border: 5px solid #444;
@@ -317,6 +317,30 @@ footer .owner p {
 
 .small { 
 	font-size: 10px; 
+}
+
+/*https://www.w3schools.com/howto/howto_css_loader.asp*/
+.loader {
+	border: 5px solid #f3f3f3;
+	-webkit-animation: spin 1s linear infinite;
+	animation: spin 1s linear infinite;
+	border-top: 5px solid rgb(68, 217, 229);
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	margin: auto;
+	margin-top: 10px;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 @media only screen and (max-width: 800px) {

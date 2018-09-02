@@ -1,4 +1,5 @@
 var indexViewModel = (function () {
+	"use strict";
 	var self = {};
 	
 	self.tab = "home";
@@ -12,7 +13,7 @@ var indexViewModel = (function () {
 		$document.on("click", "#sendBtn", self.sendEmailClickHandler);
 		$document.on("change", "#resume", self.uploadFileToServer);
 		$document.on("fileselect", "#resume", self.fileSelected);
-		$document.on("click", "#submitApplication", self.submitApplication);
+		$document.on("submit", "#job-form", self.submitApplication);
 		$window.on("hashchange", self.hashChangedHandler);
 		
 		$("#currentYear").text(new Date().getFullYear());
@@ -78,32 +79,69 @@ var indexViewModel = (function () {
 		$(".custom-file-label").text(label);
 	};
 	
-	self.submitApplication = function () {
+	self.submitApplication = function (e) {
+		e.preventDefault();
+		e.stopPropagation();
+		  
 		var body = self.buildApplicationBody();
-		if (!self.encodedAttachment) {
-			alert("Please attach your resume!");
-			$("#resume").focus();
-			return;
-		}
-		Email.sendWithAttachment(
-			"TheMelbournePreschool@gmail.com",
-			"TheMelbournePreschool@gmail.com",
-			"Job application from TheMelbournePreschool.com",
-			body,
-			{token: "89fb9dc3-e681-46c5-8166-31a2d734730e"},
-			null,
-			null,
-			self.encodedAttachment,
-			function done(message) { 
-				alert("Thank you for your application!");
+		
+		var $form = $("#job-form");
+		if ($form.length) {
+			// Invoke form validation
+			var isValid = $form[0].checkValidity();
+			$form.addClass("was-validated");
+			
+			// Wipe the error message label
+			self.clearValidationError($form);
+			
+			if (!self.encodedAttachment) {
+				self.showValidationError($form, "Please attach your resumé!");
+				return false;
 			}
-		);
+			
+			if (isValid === false) {
+				self.showValidationError($form, "Please fill out all the fields!");
+				return false;
+			}
+			try {
+				// Show the loading spinner
+				$form.find(".loader").css("display", "block");
+				Email.sendWithAttachment(
+					"TheMelbournePreschool@gmail.com", 					// from
+					"TheMelbournePreschool@gmail.com", 					// to
+					"Job application from TheMelbournePreschool.com", 	// subject
+					body, 												// body
+					{token: "89fb9dc3-e681-46c5-8166-31a2d734730e"},	// token for the SMTP
+					null,												// SMTP username (not used)
+					null,												// SMTP password (not used)
+					self.encodedAttachment,								// Attachment
+					function done(message) { 
+						$form.find(".loader").css("display", "none");
+						alert("Thank you for your application!");
+					}
+				);
+			}
+			catch (e) {
+				$form.find(".loader").css("display", "none");
+			}
+		}
+		return false;
+	};
+	
+	self.showValidationError = function ($form, message) {
+		$form.find(".validation-error")
+			.text(message)
+			.css("display", "");
+	};
+	
+	self.clearValidationError = function ($form, message) {
+		$form.find(".validation-error").text("");
 	};
 	
 	self.buildApplicationBody = function () {
 		var body = "";
-		$("#careers").find("input:not([type=file])").each(function () {
-			body += $(this).attr("placeholder") + ": " + $(this).val() + "\n";
+		$("#careers").find("input:not([type=file]):not([type=submit])").each(function () {
+			body += $(this).attr("placeholder") + ": " + $(this).val() + "<br>";
 		});
 		return body;
 	};
@@ -114,7 +152,9 @@ var indexViewModel = (function () {
 		$("#navbar a[data-tab='" + self.tab + "']").addClass("navSelected");
 		
 		$newTab[0].style.display = "";
-		$newTab.animate({ height: Number($newTab[0].getAttribute("data-height")) }, 400);
+		$newTab.animate({ 
+			height: Number($newTab[0].getAttribute("data-height")) 
+		}, 400);
 		setTimeout(function () {
 			$newTab[0].style.height = "auto";
 		}, 425);
