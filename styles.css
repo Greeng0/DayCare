@@ -331,7 +331,10 @@ footer .owner p {
 	margin: auto;
 	margin-top: 10px;
 }
-
+#calendarDoc {
+	width: 100%;
+	height: 500px;
+}
 /* Safari */
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
