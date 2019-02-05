@@ -243,6 +243,9 @@ textarea {
 	max-width: 33%;
 	margin-left: 15px;
 }
+#staff {
+	max-width: 50%;
+}
 #img-rebecca.p-img { /* ugh... */
 	float: left;
 	margin-right: 15px;
