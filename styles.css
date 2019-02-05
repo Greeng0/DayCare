@@ -243,7 +243,7 @@ textarea {
 	max-width: 33%;
 	margin-left: 15px;
 }
-#staff {
+#educators #staff {
 	max-width: 50%;
 }
 #img-rebecca.p-img { /* ugh... */
@@ -314,7 +314,7 @@ footer .owner p {
 }
 .markdown-body h4 { font-size: 18px; padding: 2px 5px; }
 .markdown-body h5 { font-size: 16px; }
-.markdown-body img { max-width: 100%; @include box-sizing(border-box); }
+.markdown-body img { max-width: 100% !important; @include box-sizing(border-box); }
 
 .highlight{ color: #F8904D; font-weight: bold; }
 
