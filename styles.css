@@ -379,6 +379,9 @@ footer .owner p {
 	#about-img {
 		width: 50%;
 	}
+	#vpk-img {
+		width: 100%
+	}
 	footer .owner { margin-left: 0;  margin-right: 0; height: auto;}
 	footer .float-left,
     footer .float-right { float: none; }

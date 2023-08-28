@@ -4,37 +4,47 @@ var indexViewModel = (function () {
 	
 	self.tab = "home";
 	self.ignoreHashChange = false;
+	self.encodedAttachment = "";
+	self.loadTimeout = null;
 	
 	self.init = function () {
 		var $document = $(document);
 		var $window = $(window);
 		$document.on("click", "#navbar a, .preview-box", self.navClickHandler);
+		$document.on("click", "#sendBtn", self.sendEmailClickHandler);
 		$window.on("hashchange", self.hashChangedHandler);
 		
 		$("#currentYear").text(new Date().getFullYear());
 		
-		$window.on("load", function () {
-			// Get the tab from the url or default to the home page
-			var hashObj = self.convertURLHashToObject();
-			if (hashObj.t)
-				self.tab = hashObj.t;
+		$window.on("load", self.windowLoaded);
+		
+		// Load anyways after timeout
+		self.loadTimeout = setTimeout(self.windowLoaded, 3000);
+	};
+	
+	self.windowLoaded = function () {
+		clearTimeout(self.loadTimeout);
+		
+		// Get the tab from the url or default to the home page
+		var hashObj = self.convertURLHashToObject();
+		if (hashObj.t)
+			self.tab = hashObj.t;
+		
+		// Get and save the height of each page element
+		$(".markdown-body > div").each(function () {
+			var $this = $(this);
+			var height = $this.height();
+			var $sub = $this.find(".page-sub");
+			if ($sub.length)
+				height += $sub.height() + 20;
+			this.setAttribute("data-height", height);
 			
-			// Get and save the height of each page element
-			$(".markdown-body > div").each(function () {
-				var $this = $(this);
-				var height = $this.height();
-				var $sub = $this.find(".page-sub");
-				if ($sub.length)
-					height += $sub.height() + 20;
-				this.setAttribute("data-height", height);
-				
-				// Set page height to 0
-				if (this.id !== self.tab)
-					$this.height(0).css("display", "none");
-			});
-			
-			self.openTab();
+			// Set page height to 0
+			if (this.id !== self.tab)
+				$this.height(0).css("display", "none");
 		});
+		
+		self.openTab();
 	};
 
 	self.hashChangedHandler = function () {
@@ -44,6 +54,13 @@ var indexViewModel = (function () {
 		}
 		var hash = self.convertURLHashToObject().t;
 		self.navClickHandler({ tab: hash || "home" });
+	};
+
+	self.sendEmailClickHandler = function () {
+		var subject = encodeURIComponent(document.getElementById("subject").value);
+		var message = encodeURIComponent(document.getElementById("message").value);
+		var address = encodeURIComponent("mailto:TheMelbournePreschool@gmail.com");
+		window.open("mailto:" + address + "?subject=" + subject + "&body=" + message);
 	};
 	
 	self.openTab = function () {
@@ -68,7 +85,8 @@ var indexViewModel = (function () {
 		var $navBtn = $("#navbar a[data-tab=" + newTab + "]");
 		var $currentNavBtn = $(".navSelected");
 		
-		if (newTab !== $currentNavBtn[0].getAttribute("data-tab")) {	
+		if ($currentNavBtn.length && 
+			newTab !== $currentNavBtn[0].getAttribute("data-tab")) {	
 			$currentNavBtn.removeClass("navSelected");
 			$navBtn.addClass("navSelected");
 			var $currentTab = $("#" + $currentNavBtn[0].getAttribute("data-tab"));
