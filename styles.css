@@ -244,7 +244,7 @@ textarea {
 	margin-left: 15px;
 }
 #educators #staff {
-	max-width: 50%;
+	max-width: 100%;
 }
 #img-rebecca.p-img { /* ugh... */
 	float: left;
@@ -314,7 +314,7 @@ footer .owner p {
 }
 .markdown-body h4 { font-size: 18px; padding: 2px 5px; }
 .markdown-body h5 { font-size: 16px; }
-.markdown-body img { max-width: 100% !important; @include box-sizing(border-box); }
+.markdown-body img { max-width: 100%; @include box-sizing(border-box); }
 
 .highlight{ color: #F8904D; font-weight: bold; }
 
@@ -394,6 +394,7 @@ footer .owner p {
 }
 @media only screen and (max-width: 550px) {
 	header, #logo{ height: 140px; }
+	#educators img { max-width: 100%; }
 }
 @media only screen and (max-width: 350px) {
 	#home .preview-box {
