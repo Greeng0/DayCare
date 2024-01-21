@@ -12,10 +12,7 @@ var indexViewModel = (function () {
 		var $window = $(window);
 		$document.on("click", "#navbar a, .preview-box", self.navClickHandler);
 		$document.on("click", "#sendBtn", self.sendEmailClickHandler);
-		$window.on("hashchange", self.hashChangedHandler);
-		
-		$("#currentYear").text(new Date().getFullYear());
-		
+		$window.on("hashchange", self.hashChangedHandler);		
 		$window.on("load", self.windowLoaded);
 		
 		// Load anyways after timeout
@@ -143,8 +140,7 @@ var indexViewModel = (function () {
 	};
 	
 	return {
-		initialize: self.init,
-		currentYear: self.currentYear
+		initialize: self.init
 	};
 })();
 

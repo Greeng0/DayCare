@@ -300,6 +300,9 @@ footer .owner p {
 	display: inline-block;
 	vertical-align: top;
 }
+.box-p .em-text {
+	color: steelblue;
+}
 .rates {
 	display: none;
 }
@@ -320,6 +323,10 @@ footer .owner p {
 
 .small { 
 	font-size: 10px; 
+}
+
+.em-text {
+	color: skyblue;
 }
 
 /*https://www.w3schools.com/howto/howto_css_loader.asp*/

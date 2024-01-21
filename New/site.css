@@ -85,25 +85,57 @@ header .logo
 
 .start .logo
 {
-	width: 1000px;
-    height: 180px;
-    margin-left: auto;
-    margin-right: auto;
+	width: 75%;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.section .cloud-top
+{
+	background-image: url(bg1-top.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 0;
+	padding-top: 18.63%; /* (img-height / img-width * container-width) */
+	margin-bottom: -2px;
+}
+
+.section .cloud-bott
+{
+	background-image: url(bg1-bott.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 0;
+	padding-top: 18.63%; /* (img-height / img-width * container-width) */
+	margin-bottom: -2px;
+}
+
+.section
+{
+	text-align: center;
 }
 
 .section-header
 {
 	text-align: center;
-	padding: 20px 20%;
+	padding: 20px 0;
 }
 
 .section-header
 {
-	background-image: url(bg1.png);
+	background-image: url(bg2.png);
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-position: top center;	
-	height: 250px;
+	background-position: top center;
+	min-height: 250px;
+}
+
+.middle .section-header
+{
+	padding: 17% 0;
 }
 
 .middle .section-header p
@@ -119,24 +151,28 @@ header .logo
 
 .end .section-content
 {
-	display: flex;
-	justify-content: space-evenly;
+	display: inline-block;
+	padding-left: 0;
+	padding-right: 0;
+	width: 100%;
 }
 
 .end .section-content img
 {
-	width: 250px;
-	object-fit: cover;
+	width: 24%;
+	min-width: 150px;
+	height: 250px;
+	object-fit: contain;
 }
 
 .section-content
 {
 	text-align: center;
-	background-color: #71b9e3;
+	background-color: #d5dde0;
 	padding: 10px;
 }
 
-.section-content h2, .section-header h2
+.section-content h2, .section-header h2, .section h2
 {
 	margin-top: 20px;
 	font-size: 30pt;
@@ -144,13 +180,15 @@ header .logo
 
 .circles
 {
-	display: flex;
-	justify-content: space-evenly;
+	display: inline-block;
+	padding-left: 0;
+	padding-right: 0;
+	width: 100%;
 }
 
 .circle-img
 {
-	display: flex;
+	display: inline-flex;
 	flex-direction: column;
 	padding: 10px;
 }
@@ -167,5 +205,22 @@ header .logo
 .circle-img h3
 {
 	padding-top: 5px;
-	color: white;
+	color: black;
+}
+
+#who
+{
+	background-color: #d5dde0;
+	padding: 20px 100px 30px;
+}
+
+#who h2
+{
+	padding-bottom: 10px;
+}
+
+#who p
+{
+	font-family: Tempus Sans ITC;
+	font-size: 17pt;
 }
