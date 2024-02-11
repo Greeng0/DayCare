@@ -1,0 +1,292 @@
+@font-face {
+  font-family: 'Sunday-Regular';
+  src: local('Sunday-Regular'),
+    url("Sunday-Regular.ttf") format("ttf"),
+    url("Sunday-Regular.otf") format("opentype")
+}
+
+html, body
+{
+	margin: 0;
+	padding: 0;
+	font-family: 'Sunday-Regular';
+}
+
+h1, h2, h3, p
+{
+	margin: 0;
+	font-weight: lighter;
+}
+
+.wrapper 
+{
+	width: 100%
+}
+
+header
+{
+	width: 100%;
+    display: inline-block;
+    margin: 0;
+    vertical-align: middle;
+    position: relative;
+    z-index: 110;
+	height: 320px;
+}
+
+header .logo
+{
+	margin: 20px;
+	width: 300px;
+	height: 300px;
+}
+
+.navbar
+{
+	float: right;
+	margin: 25px;
+	margin-right: 60px;
+}
+
+.navbar a 
+{
+	padding: 10px;
+	margin: 5px;
+	background-color: rgba(255,255,255,0.5);
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
+	font-size: 30pt;
+}
+
+.navbar a:hover
+{
+	text-shadow: 4px 0 #558ABB;
+}
+
+.content
+{
+	width: 100%;
+	height: 100%;
+	margin-top: -320px;
+}
+
+.start
+{
+	background-image: url(playground.jpeg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 100%;
+	height: 850px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+.start .logo
+{
+	width: 75%;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.section .cloud-top
+{
+	background-image: url(cloudslogo.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 0;
+	padding-top: 56.65%; /* (img-height / img-width * container-width) */
+	margin-top: -250px;
+	background-color: transparent;
+}
+
+img.kids
+{
+	width: 100%;
+	margin-bottom: -4px;
+}
+
+.section
+{
+	text-align: center;
+	background: transparent;
+}
+
+.section-header
+{
+	text-align: center;
+	padding: 20px 0;
+}
+
+.section-header
+{
+	background-image: url(bg2.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: top center;
+	min-height: 250px;
+}
+
+.middle .section-header
+{
+	padding: 17% 0;
+}
+
+.middle .section-header p
+{
+	margin-top: 20px;
+}
+
+.end .section-header img
+{
+	margin-top: 20px;
+	width: 100%;
+}
+
+.end .section-content
+{
+	display: inline-block;
+	padding-left: 0;
+	padding-right: 0;
+	width: 100%;
+}
+
+.end .section-content > img
+{
+	width: 24%;
+	min-width: 150px;
+	height: 250px;
+	object-fit: contain;
+	margin-right: 30px;
+}
+
+.section-content
+{
+	text-align: center;
+	background-color: #d9d9d9;
+}
+
+.section-content h2, .section-header h2, .section h2
+{
+	/* margin-top: 20px; */
+	font-size: 30pt;
+}
+
+.circles
+{
+	display: inline-block;
+	padding-left: 0;
+	padding-right: 0;
+	width: 100%;
+	background: url(bg2.png);
+	background-size: contain;
+}
+
+.circle-img
+{
+	display: inline-flex;
+	flex-direction: column;
+	padding: 30px;
+}
+
+.circle-img img
+{
+	height: 250px;
+	width: 250px;
+	object-fit: cover;
+	border-radius: 500px;
+	border: 4px black solid;
+}
+
+.circle-img h3
+{
+	padding-top: 5px;
+	color: black;
+}
+
+#who
+{
+	background-color: #d9d9d9;
+	padding: 20px 100px 30px;
+}
+
+#who h2
+{
+	padding-bottom: 10px;
+}
+
+#who p
+{
+	font-family: Tempus Sans ITC;
+	font-size: 17pt;
+}
+
+.whitespace
+{
+	width: 100%;
+	background-color: white;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+	padding: 20px 0;
+}
+
+.redblob
+{
+	background-image: url(redblob.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	width: 635px;
+	height: 100px;
+	text-align: center;
+	padding-top: 30px;
+	padding-left: 30px;
+}
+
+.redblob > *
+{
+	color: white;
+	font-size: 20pt;
+	float: left;
+	text-align: center;
+	width: 200px;
+}
+
+.blueblob
+{
+	background-image: url(blueblob.png);
+	background-size: inherit;
+	background-repeat: no-repeat;
+	width: 400px;
+	height: 100px;
+	text-align: center;
+	padding-top: 30px;
+}
+
+.blueblob > span
+{
+	color: white;
+	font-size: 30pt; 
+}
+
+.contact
+{
+	display: inline-block;
+	height: 250px;
+}
+
+.contact h2
+{
+	color: white;
+	font-size: 40pt;
+	padding-bottom: 30px;
+}
+
+.contact img
+{
+	height: 150px;
+}
